@@ -6,7 +6,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class MainApp {
 	public static void main(String[] args) {
 		ApplicationContext ac = new AnnotationConfigApplicationContext(MainConfiguration.class);
-		
+		//test upload git
 		Room room1 = ac.getBean(room1.class);
 		System.out.println(room1.getRoom() + ": " + room1.getAnimal().getname());
 	
