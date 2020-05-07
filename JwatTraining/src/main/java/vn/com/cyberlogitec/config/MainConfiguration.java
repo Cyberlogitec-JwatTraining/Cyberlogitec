@@ -37,4 +37,5 @@ public class MainConfiguration {
 	public Room room3() {
 		return new room3();
 	}
+	
 }
