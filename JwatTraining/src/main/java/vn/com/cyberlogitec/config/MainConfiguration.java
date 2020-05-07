@@ -9,6 +9,7 @@ public class MainConfiguration {
 	public Animal bird() {
 		return new bird();
 	}
+	//
 	
 	@Bean
 	public Animal cat() {
