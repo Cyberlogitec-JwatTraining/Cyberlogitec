@@ -29,7 +29,7 @@ public class MainConfiguration {
 	@Bean
 	public Room2 initRoom2() {
 		Room2 room2 = new Room2();
-		room2.setAnimal(initDog());
+		room2.setAnimal(initBird());
 		return room2;
 	}
 	
