@@ -8,7 +8,7 @@ import vn.com.cyberlogitec.practice_02.XMLFileConfig.service.EmployeeService;
 public class Main {
 
 	public static void main(String[] args) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("contextXmlFileConfig.xml.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("contextXmlFileConfig.xml");
 		System.out.println("---Before GetBean---");
 		EmployeeService employeeService = context.getBean("employeeService", EmployeeService.class);
 		System.out.println("---After getBean---");

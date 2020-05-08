@@ -11,7 +11,7 @@
 <!-- 		<property name="employeeRepository" ref="employeeRepository"/> -->
 		
 		<!-- Constructor Injection -->
-		<!-- <constructor-arg name="employeeRepository" ref="employeeRepository"></constructor-arg> -->
+		<constructor-arg name="employeeRepository" ref="employeeRepository"></constructor-arg>
 	</bean>	
 
 </beans>
