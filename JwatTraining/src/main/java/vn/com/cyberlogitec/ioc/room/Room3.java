@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import vn.com.cyberlogitec.ioc.animal.Animal;
 
 public class Room3 implements Room{
+	//abc
 	@Autowired
 	@Qualifier("dog")
 	private Animal animal;
