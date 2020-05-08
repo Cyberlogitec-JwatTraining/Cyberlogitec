@@ -1,6 +1,7 @@
 package vn.com.cyberlogitec.day01;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class MainApp {
@@ -12,5 +13,7 @@ public class MainApp {
 		System.out.println(room2.getRoom()+ ": "+room2.getAnimal());
 		Room room3 = context.getBean(Room3.class);
 		System.out.println(room3.getRoom()+ ": "+room3.getAnimal());
+		
+		((ConfigurableApplicationContext) context).close();
 	}
 }
