@@ -1,4 +1,4 @@
-package vn.com.cyberlogitec.config;
+package vn.com.cyberlogitec.ioc;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

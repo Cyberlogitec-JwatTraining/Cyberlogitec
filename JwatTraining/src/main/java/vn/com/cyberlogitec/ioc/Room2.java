@@ -1,4 +1,4 @@
-package vn.com.cyberlogitec.config;
+package vn.com.cyberlogitec.ioc;
 
 public class Room2 implements Room {
 	private Animal ani;

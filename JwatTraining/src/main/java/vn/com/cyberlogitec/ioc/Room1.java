@@ -1,10 +1,10 @@
-package vn.com.cyberlogitec.config;
+package vn.com.cyberlogitec.ioc;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-public class Room3 implements Room {
-	@Autowired
+public class Room1 implements Room {
 	private Animal ani;
+	public Room1(Animal ani) {
+		this.ani = ani;
+	}
 	@Override
 	public String getAnimal() {
 		// TODO Auto-generated method stub
@@ -14,7 +14,7 @@ public class Room3 implements Room {
 	@Override
 	public String getRoom() {
 		// TODO Auto-generated method stub
-		return "Room 3";
+		return "Room 1";
 	}
-
+	
 }
