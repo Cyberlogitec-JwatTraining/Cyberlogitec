@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- Needed for @Autowired -->
+	<context:component-scan base-package="vn.com.cyberlogictec.ioc"/>
+
+	<!-- Constructor-based -->
+	<bean id="room1" class="vn.com.cyberlogitec.ioc.room.Room1">
+		<constructor-arg name="injectedAnimal" ref="cat" />
+	</bean>
+
+	<!-- Setter-based -->
+	<bean id="room2" class="vn.com.cyberlogitec.ioc.room.Room2">
+		<property name="animal" ref="dog" />
+	</bean>
+
+	<bean id="room3" class="vn.com.cyberlogitec.ioc.room.Room3"/>
+
+	<bean id="cat" class="vn.com.cyberlogitec.ioc.animal.Cat"/>
+	<bean id="dog" class="vn.com.cyberlogitec.ioc.animal.Dog"/>
+	<bean id="bird" class="vn.com.cyberlogitec.ioc.animal.Bird"/>
+	
+	
+	
+</beans>

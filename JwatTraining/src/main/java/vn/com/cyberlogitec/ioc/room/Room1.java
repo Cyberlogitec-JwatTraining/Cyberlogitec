@@ -18,4 +18,7 @@ public class Room1 implements Room{
 		return "Room 1: ";
 	}
 	
+	public void init() {
+		System.out.println("init method");
+	}
 }

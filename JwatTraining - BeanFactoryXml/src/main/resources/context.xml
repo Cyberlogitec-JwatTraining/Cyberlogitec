@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="studentRepository" class="vn.com.cyberlogitec.repository.StudentRepositoryImpl"/>
+	
+	<bean id="studentService" class="vn.com.cyberlogitec.service.StudentServiceImpl">
+		<constructor-arg name="studentRepository" ref="studentRepository"></constructor-arg>
+	</bean>	
+
+</beans>

@@ -5,8 +5,8 @@ import vn.com.cyberlogitec.ioc.animal.Animal;
 public class Room2 implements Room {
 	Animal animal;
 	
-	public void setAnimal(Animal injectedAnimal) {
-		this.animal =injectedAnimal;
+	public void setAnimal(Animal animal) {
+		this.animal =animal;
 	}
 
 	@Override
