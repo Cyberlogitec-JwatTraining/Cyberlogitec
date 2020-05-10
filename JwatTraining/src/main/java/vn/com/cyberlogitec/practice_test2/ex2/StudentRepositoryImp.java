@@ -2,6 +2,8 @@ package vn.com.cyberlogitec.practice_test2.ex2;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository("StudentRepository")
