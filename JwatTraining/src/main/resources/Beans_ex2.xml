@@ -6,14 +6,12 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 		
 	<context:component-scan base-package="vn.com.cyberlogitec.practice_test2.ex2"></context:component-scan>
-	<bean id ="student_bean" class = "vn.com.cyberlogitec.practice_test2.ex2.Student">
+	<bean id ="Student_ex2" class = "vn.com.cyberlogitec.practice_test2.ex2.Student">
 		<property name="id" value="sv1"></property>
 		<property name="name" value="Le Cao Duc Huy"></property>
 	</bean>
 	
-	<bean id = "studentRepo" class = "vn.com.cyberlogitec.practice_test2.ex2.StudentRepositoryImp">
-		<constructor-arg name="s" ref="student_bean"></constructor-arg>
-	</bean>
+	
 </beans>
 
 

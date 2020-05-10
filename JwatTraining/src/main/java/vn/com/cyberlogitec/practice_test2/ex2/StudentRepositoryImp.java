@@ -14,6 +14,7 @@ public class StudentRepositoryImp implements StudentRepository{
 		this.list = new ArrayList<Student>();
 		
 	}
+	@Autowired
 	public StudentRepositoryImp(Student s) {
 		this.list = new ArrayList<Student>();
 		this.list.add(s);
