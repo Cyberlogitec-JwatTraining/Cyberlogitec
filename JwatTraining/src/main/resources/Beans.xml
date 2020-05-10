@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="student" class="vn.com.cyberlogitec.practice_test2.ex1.Student">
+		<property name="id" value="sv1"></property>
+		<property name="name" value="Le Cao Duc Huy"></property>
+	</bean>
+	<bean id="studentRepository" class="vn.com.cyberlogitec.practice_test2.ex1.RepositoryImp">
+			<constructor-arg name = "s" ref = "student"></constructor-arg>
+	</bean>
+	
+	<bean id="studentService" class="vn.com.cyberlogitec.practice_test2.ex1.ServiceImp">
+		<!-- Constructor Injection -->
+		
+ 		<constructor-arg name = "studentRepo" ref = "studentRepository"></constructor-arg>
+	</bean>	
+
+</beans>
