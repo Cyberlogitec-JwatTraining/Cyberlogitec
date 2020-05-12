@@ -1,0 +1,30 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="vn.com.cyberlogitec.practice_03.XMLMapper.mapper.EmployeeMapper">
+    <insert id="insert" parameterType="Employee" >
+        INSERT INTO Employee (name, age) VALUES (#{name}, #{age});
+    </insert>
+ 
+    <update id="update" parameterType="Employee">
+        UPDATE Employee SET name = #{name}, age = #{age} WHERE ID = #{id};
+    </update>
+     
+    <delete id="deleteById" parameterType="int">
+        DELETE from Employee WHERE ID = #{id};
+    </delete>
+     
+    <select id="selectAll" resultMap="result">
+        SELECT * FROM Employee;
+    </select>
+     
+    <select id="selectById" parameterType="int" resultType="Employee">
+        SELECT * FROM Employee WHERE ID = #{id};
+    </select>
+     
+    <resultMap id = "result" type = "Employee">
+       <result property = "id" column = "id"/>
+       <result property = "name" column = "name"/>
+       <result property = "age" column = "age"/>
+    </resultMap>
+</mapper>
