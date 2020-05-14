@@ -32,4 +32,12 @@ public class StudentServiceImpl implements StudentService {
     public Student selectStudentById(int studentId) {
         return studentMapper.selectStudentById(studentId);
     }
+
+	public List<Student> selectStudentsByName(String findName) {
+		return studentMapper.selectStudentsByName(findName.trim());
+	}
+
+	public Student selectStudentByPhoneOrName(Student student) {
+		return studentMapper.selectStudentByPhoneOrName(student);
+	}
 }

@@ -10,4 +10,6 @@ public interface StudentMapper {
     public int deleteStudentById(int studentId);
     public List<Student> selectAllStudent();
     public Student selectStudentById(int studentId);
+    public List<Student> selectStudentsByName(String findName);
+    public Student selectStudentByPhoneOrName(Student student);
 }

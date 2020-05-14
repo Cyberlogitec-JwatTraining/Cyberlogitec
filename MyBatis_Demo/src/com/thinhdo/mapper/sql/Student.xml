@@ -22,6 +22,27 @@
         SELECT * FROM STUDENT WHERE ID = #{id};
     </select>
     
+    <!-- Return List of student contains the name -->
+    <select id="selectStudentsByName" parameterType="java.lang.String" resultMap="result">
+    	SELECT * FROM STUDENT 
+		<if test="'#{findName}'!=null">
+			WHERE NAME LIKE CONCAT('%', #{findName} , '%')
+		</if>
+   	</select>
+    
+    <select id="selectStudentByPhoneOrName" resultType="Student">
+    	SELECT * FROM STUDENT WHERE 1=1 
+    	<choose>
+    		<when test="name!=''">
+    			AND NAME LIKE #{name}
+    		</when>
+    		<when test="phone!=0">
+    			AND PHONE = #{phone} 
+    		</when>
+    	</choose>
+    	limit 1
+    </select>
+    
     <!-- Mapping whether the name between properties & columns are differenced -->
     <!-- Return ResulSet -->
     <resultMap id = "result" type = "Student">
