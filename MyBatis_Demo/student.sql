@@ -1,0 +1,10 @@
+create table student (
+ID int NOT NULL auto_increment,
+NAME VARCHAR(100) NOT NULL,
+BRANCH VARCHAR(255) NOT NULL,
+PERCENTAGE INT NOT NULL,
+PHONE INT NOT NULL,
+EMAIL VARCHAR(255) NOT NULL,
+primary key (ID)
+);
+

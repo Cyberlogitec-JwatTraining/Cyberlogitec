@@ -12,18 +12,18 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
-	@RequestMapping(value="/")
-	public ModelAndView test(HttpServletResponse response) throws IOException{
-		return new ModelAndView("home");
-	}
-	
-	/**
-	 * 
-	 * @param name
-	 * @return
-	 */
-	@RequestMapping("/greeting")
-	public ModelAndView greeting(@RequestParam(name="name", required=false, defaultValue="World") String name) {
-		return new ModelAndView("greeting");
-	}
+//	@RequestMapping(value="/")
+//	public ModelAndView test(HttpServletResponse response) throws IOException{
+//		return new ModelAndView("home");
+//	}
+//	
+//	/**
+//	 * 
+//	 * @param name
+//	 * @return
+//	 */
+//	@RequestMapping("/greeting")
+//	public ModelAndView greeting(@RequestParam(name="name", required=false, defaultValue="World") String name) {
+//		return new ModelAndView("greeting");
+//	}
 }
