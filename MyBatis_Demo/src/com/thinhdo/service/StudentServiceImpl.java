@@ -37,7 +37,11 @@ public class StudentServiceImpl implements StudentService {
 		return studentMapper.selectStudentsByName(findName.trim());
 	}
 
-	public Student selectStudentByPhoneOrName(Student student) {
+	public List<Student> selectStudentByPhoneOrName(Student student) {
 		return studentMapper.selectStudentByPhoneOrName(student);
+	}
+
+	public List<Student> selectStudentByIds(List<Integer> listIDs) {
+		return studentMapper.selectStudentByIds(listIDs);
 	}
 }

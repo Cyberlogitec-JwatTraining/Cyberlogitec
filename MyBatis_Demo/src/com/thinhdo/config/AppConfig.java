@@ -28,12 +28,12 @@ public class AppConfig {
                 .getResourceAsStream("/application.properties");
         properties.load(user_props);
         dataSource.setDriverClassName(
-                properties.getProperty("spring.datasource.driver-class-name"));
-        dataSource.setUrl(properties.getProperty("spring.datasource.url"));
+                properties.getProperty("spring.datasource-mysql.driver-class-name"));
+        dataSource.setUrl(properties.getProperty("spring.datasource-mysql.url"));
         dataSource.setUsername(
-                properties.getProperty("spring.datasource.username"));
+                properties.getProperty("spring.datasource-mysql.username"));
         dataSource.setPassword(
-                properties.getProperty("spring.datasource.password"));
+                properties.getProperty("spring.datasource-mysql.password"));
         return dataSource;
     } 
 

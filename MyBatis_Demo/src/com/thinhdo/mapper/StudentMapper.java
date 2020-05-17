@@ -11,5 +11,6 @@ public interface StudentMapper {
     public List<Student> selectAllStudent();
     public Student selectStudentById(int studentId);
     public List<Student> selectStudentsByName(String findName);
-    public Student selectStudentByPhoneOrName(Student student);
+    public List<Student> selectStudentByPhoneOrName(Student student);
+    public List<Student> selectStudentByIds(List<Integer> listIDs);
 }

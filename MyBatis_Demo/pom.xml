@@ -10,6 +10,12 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.19</version>
         </dependency>
+        
+        <dependency>
+		    <groupId>com.microsoft.sqlserver</groupId>
+		    <artifactId>mssql-jdbc</artifactId>
+		    <version>8.2.2.jre11</version>
+		</dependency>
         <!-- MyBatis -->
         <dependency>
             <groupId>org.mybatis</groupId>
@@ -41,6 +47,8 @@
             <artifactId>spring-context</artifactId>
             <version>4.3.6.RELEASE</version>
         </dependency>
+        
+        
     </dependencies>
 
     <build>

@@ -1,5 +1,6 @@
 package com.thinhdo.main;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,11 +27,11 @@ public class StudentTest {
 //        System.out.println("insert : " + student1);
         
         // select all student
-//        List<Student> listStudents = studentService.selectAllStudent();
-//        System.out.println("select all : ");
-//        for (Student student : listStudents) {
-//            System.out.println(student);
-//        }
+        List<Student> listStudents = studentService.selectAllStudent();
+        System.out.println("select all : ");
+        for (Student student : listStudents) {
+            System.out.println(student);
+        }
         
         // select student by id
 //        Student student2 = studentService.selectStudentById(1);
@@ -52,21 +53,59 @@ public class StudentTest {
 //            System.out.println(student);
 //        }
         
-        System.out.println("Enter name OR phone number to search: ");
-        System.out.print("Enter name: "); String name = sc.nextLine();
-        System.out.print("Enter phone: ");
-        String p = sc.nextLine();
-        int phone = 0;
-        if(!p.equals("")) {
-        	phone = Integer.parseInt(p);
-        }
-        Student findStudent = new Student();
-        findStudent.setName(name); findStudent.setPhone(phone);
+        /**
+         * Search student by student's phone OR name....
+         */
+//        System.out.println("Enter name OR phone number to search: ");
+//        System.out.print("Enter name: "); 
+//        String name = sc.nextLine();
+//        
+//        int phone = 0;
+//        System.out.print("Enter phone: "); 
+//        try {
+//        	phone = Integer.parseInt(sc.nextLine());
+//        }catch(NumberFormatException nfe) {
+//        	System.out.println("So dien thoai khong hop le");
+//        }
+//        
+//        Student findStudent = new Student();
+//        findStudent.setName(name); findStudent.setPhone(phone);
+//        
+//        System.out.println("Searching for: " + findStudent.getName() + ", Phone: " + findStudent.getPhone());
+//        
+//        List<Student> studentFound = studentService.selectStudentByPhoneOrName(findStudent);
+//        if(studentFound!=null) {
+//        	for(Student student : studentFound) {
+//        		System.out.println("Info: " + student.toString()); 
+//        	}
+//        }
         
-        Student student = studentService.selectStudentByPhoneOrName(findStudent);
-        if(student!=null) {
-        	System.out.println("STUDENT FOUND: ");
-        	System.out.println(student.toString());
-        }
+//          System.out.println("Enter ID(s) for searching: ");
+//          int id_input = -1; 
+//          List<Integer> listIDs = new ArrayList<Integer>();
+//          do {
+//        	  System.out.print("Enter id (input -1 for EXIT): ");
+//        	  try {
+//        		  id_input = Integer.parseInt(sc.nextLine());
+//        		  if(id_input>-1) {
+//        			  listIDs.add(id_input);
+//        		  }
+//        	  }catch(NumberFormatException nfe) {
+//        		  System.out.println("Xin moi nhap so");
+//        	  }
+//          }while(id_input!=-1);
+//          System.out.println("So luong id vua nhap: " + listIDs.size());
+//          List<Student> studentFoundByIds = studentService.selectStudentByIds(listIDs);
+//          if(studentFoundByIds!=null) {
+//        	  if(studentFoundByIds.size()!=0) {
+//        		  System.out.println("Da tim thay " + studentFoundByIds.size() + " hop le: ");
+//        		  for(Student student : studentFoundByIds) {
+//        			  System.out.println(student.toString());
+//        		  }
+//        	  }else {
+//        		  System.out.println("Khong tim thay sinh vien phu hop");
+//        	  }
+//          }
+          
     }
 }

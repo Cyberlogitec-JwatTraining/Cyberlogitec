@@ -30,19 +30,25 @@
 		</if>
    	</select>
     
-    <select id="selectStudentByPhoneOrName" resultType="Student">
+    <select id="selectStudentByPhoneOrName" resultMap="result">
     	SELECT * FROM STUDENT WHERE 1=1 
     	<choose>
-    		<when test="name!=''">
-    			AND NAME LIKE #{name}
+    		<when test="name!='' and name!=null">
+    			AND NAME LIKE CONCAT('%', #{name} , '%')
     		</when>
     		<when test="phone!=0">
-    			AND PHONE = #{phone} 
+    			AND PHONE = #{phone}
     		</when>
     	</choose>
-    	limit 1
     </select>
     
+    <select id="selectStudentByIds" resultMap="result">
+    	SELECT * FROM STUDENT S
+    	WHERE S.ID IN  
+    	<foreach item="item" index="index" collection="list" open="(" separator="," close=")"> <!-- Tested on MySQL -->
+    		#{item}
+    	</foreach>
+    </select>
     <!-- Mapping whether the name between properties & columns are differenced -->
     <!-- Return ResulSet -->
     <resultMap id = "result" type = "Student">

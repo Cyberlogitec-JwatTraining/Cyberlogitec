@@ -1,0 +1,14 @@
+create database school
+go
+use school
+go
+create table student(
+ID INT IDENTITY(1, 1) PRIMARY KEY,
+NAME VARCHAR(100) NOT NULL,
+BRANCH VARCHAR(255) NOT NULL,
+PERCENTAGE INT NOT NULL,
+PHONE INT NOT NULL,
+EMAIL VARCHAR(255) NOT NULL
+)
+go
+insert into student (NAME, BRANCH, PERCENTAGE, PHONE, EMAIL) VALUES ('Do Duy Thinh', 'CNTT', 88, 0911111111, 'email1@gmail.com')
