@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="vn.com.cyberlogitec.mybatis.mapper.CusMapper">
+    <insert id="AddCustomer" parameterType="Customer" >
+    	<selectKey resultType="int" order="BEFORE" keyProperty="id">
+    		
+    		<if test="_databaseId == 'sqlserver'">SELECT NEXT VALUE FOR dbo.sequen_customer1</if>
+    			
+    	</selectKey>
+        INSERT INTO Customer (id, fname, username, passwork, avatar, stt, phonenum, sex, email, addr ) VALUES (#{id}, #{fname}, #{username}, #{pass}, #{avatar}, #{stt}, #{phone}, #{sex}, #{email}, #{addr});
+    </insert>
+ 
+    <update id="updateCusbyID" parameterType="Customer">
+    
+        UPDATE Customer 
+        <set>
+        <if test="username != null">username = #{username}, </if>
+        <if test="pass != null">passwork = #{pass}, </if>
+        <if test="avatar != null">avatar = #{avatar}, </if>
+        <if test="stt != false">stt = #{stt} ,</if>
+        <if test="phone != null">phonenum = #{phone} ,</if>
+        <if test="sex != null">sex = #{sex}, </if>
+        <if test="email != null">email = #{email}, </if>
+        <if test="addr != null">addr = #{addr}, </if>
+        <if test="fname != null">fname = #{fname} </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+     
+    <delete id="deleteCusById" parameterType="int">
+        DELETE from Customer WHERE id = #{id}
+    </delete>
+     
+    <select id="getAllCus" resultType="Customer">
+        SELECT * FROM Customer;
+    </select>
+     
+    <select id="getCusbyName" parameterType="java.lang.String" resultType="Customer">
+        SELECT * FROM Customer
+        <if test="#{name} != null ">
+        WHERE fname LIKE #{name}
+        </if>
+    </select>
+     <select id="getCusbyNameorPhone"  resultType="Customer">
+     	SELECT * FROM Customer WHERE id !=0
+     	<choose>
+     	<when test="param1 != null">
+     		AND fname LIKE #{param1} 
+     	</when>
+     	<when test="param2 != null">
+     		AND phonenum LIKE #{param2}
+     	</when>
+     	</choose>
+     </select>
+     <select id="getCusMulID"  resultType="Customer">
+        SELECT * FROM Customer WHERE id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+        	#{item}
+        </foreach>
+    </select>
+    <resultMap id = "result" type = "Customer">
+       <result property = "id" column = "id"/>
+       <result property = "fname" column = "fname"/>
+       <result property = "username" column = "username"/>
+       <result property = "pass" column = "passwork"/>
+       <result property = "avatar" column = "avatar"/>
+       <result property = "stt" column = "stt"/>
+       <result property = "phone" column = "phonenum"/>
+       <result property = "sex" column = "sex"/>
+       <result property = "email" column = "email"/>
+       <result property = "addr" column = "addr"/>
+    </resultMap>
+</mapper>
