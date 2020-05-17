@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="vn.com.cyberlogitec.practice_04.dao.StudentMapper">
+
+	<resultMap type="student" id="result">
+		<id property="ID" column="ID" />
+		<result property="NAME" column="NAME" />
+		<result property="BRANCH" column="BRANCH" />
+		<result property="PERCENTAGE" column="PERCENTAGE" />
+		<result property="PHONE" column="PHONE" />
+		<result property="EMAIL" column="EMAIL" />
+	</resultMap>
+
+	<select id="findStudentByName" parameterType="student"
+		resultType="student" resultMap="result">
+
+		SELECT * FROM tbl_student
+		<if test="NAME != null">
+			WHERE NAME LIKE CONCAT('%',#{NAME},'%')
+		</if>
+
+	</select>
+	
+	<select id="findStudentById" parameterType="int"
+		resultType="student" resultMap="result">
+
+		SELECT * FROM tbl_student
+		<if test="!'#{ida}'.isEmpty()">
+			WHERE ID = #{ida}
+		</if>
+
+	</select>
+
+	<select id="findStudentByNameOrPhone" parameterType="student"
+		resultType="student" resultMap="result">
+
+		SELECT * FROM tbl_student WHERE ID != 0
+		<choose>
+			<when test="NAME != null">
+				AND NAME LIKE CONCAT('%',#{NAME},'%')
+			</when>
+			<when test="PHONE != null">
+				AND PHONE LIKE CONCAT('%',#{PHONE},'%')
+			</when>
+		</choose>
+
+	</select>
+
+	<select id="findStudentByMultiId" parameterType="list"
+		resultType="student">
+		SELECT *
+		FROM tbl_student WHERE
+		<choose>
+			<when test="list==null || list.isEmpty()">
+				1 = 0
+			</when>
+			<otherwise>
+				id IN
+				<foreach item="item" index="index" collection="list"
+					open="(" separator="," close=")">#{item}</foreach>
+			</otherwise>
+		</choose>
+
+	</select>
+
+	<update id="updateStudent">
+		UPDATE tbl_student
+		<set>
+			<if test="NAME != null">NAME=#{NAME},</if>
+			<if test="BRANCH != null">BRANCH=#{BRANCH},</if>
+			<if test="PERCENTAGE != null">PERCENTAGE=#{PERCENTAGE},</if>
+			<if test="PHONE != null">PHONE=#{PHONE},</if>
+			<if test="EMAIL != null">EMAIL=#{EMAIL}</if>
+		</set>
+		where ID=#{ID}
+	</update>
+
+	<insert id="insertStudent" parameterType="student"
+		keyProperty="ID" useGeneratedKeys="true">
+
+		INSERT INTO tbl_student (NAME,
+		BRANCH, PERCENTAGE, PHONE, EMAIL)
+		VALUES(#{NAME}, #{BRANCH},
+		#{PERCENTAGE}, #{PHONE}, #{EMAIL})
+
+	</insert>
+
+</mapper>
