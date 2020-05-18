@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.ibatis.mapping.VendorDatabaseIdProvider;
+import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.thinhdo.config.AppConfig;
 import com.thinhdo.entity.Student;
+import com.thinhdo.mapper.StudentMapper;
 import com.thinhdo.service.StudentService;
 
 public class StudentTest {
@@ -17,21 +21,39 @@ public class StudentTest {
     	Scanner sc = new Scanner(System.in);
     	
         AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-        StudentService studentService = (StudentService) context.getBean("studentService");
+        StudentMapper studentMapper = context.getBean("studentMapper_MySql", StudentMapper.class);
         
+        /**
+         * Insert student into My SQL Database
+         */
         // create student
-//        Student student1 = new Student("Jim", "Java Dev", 95, 1234568, "jimdev@gmail.com");
+//        studentMapper.deleteStudentById(7);
+        Student newStudent = new Student("Nguyen Van A", "Java Dev", 95, 1234568, "vanA@gmail.com");
         
         // insert student
-//        studentService.insertStudent(student1);
-//        System.out.println("insert : " + student1);
+//        studentMapper.insertStudent(newStudent);
+//        System.out.println("insert : " + newStudent);
         
         // select all student
-        List<Student> listStudents = studentService.selectAllStudent();
-        System.out.println("select all : ");
-        for (Student student : listStudents) {
+//        List<Student> listStudents = studentMapper.selectAllStudent();
+//        System.out.println("select all MySQL: ");
+//        for (Student student : listStudents) {
+//            System.out.println(student);
+//        }
+        
+        /**
+         * Insert student into SQL SERVER database
+         */
+        StudentMapper studentMapper2 = context.getBean("studentMapper_SqlServer", StudentMapper.class);
+        studentMapper.insertStudent(newStudent);
+        System.out.println("insert : " + newStudent);
+        // select all student
+        List<Student> listStudents2 = studentMapper2.selectAllStudent();
+        System.out.println("select all SQL SERVER: ");
+        for (Student student : listStudents2) {
             System.out.println(student);
         }
+        
         
         // select student by id
 //        Student student2 = studentService.selectStudentById(1);
@@ -80,6 +102,9 @@ public class StudentTest {
 //        	}
 //        }
         
+        /**
+         * Search student for multiple Ids input.
+         */
 //          System.out.println("Enter ID(s) for searching: ");
 //          int id_input = -1; 
 //          List<Integer> listIDs = new ArrayList<Integer>();
