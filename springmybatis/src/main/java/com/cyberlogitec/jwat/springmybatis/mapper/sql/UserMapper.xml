@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.cyberlogitec.jwat.springmybatis.mapper.UserMapper">
+	<resultMap id = "result" type = "User">
+       <result property = "id" column = "USERID"/>
+       <result property = "name" column = "USERNAME"/>
+       <result property = "sex" column = "SEX"/>
+       <result property = "account" column = "ACCOUNTNAME"/>
+       <result property = "password" column = "PASSWORD"/>
+       <result property = "userLevel" column = "USERLEVEL"/>
+    </resultMap>
+
+    <select id="selectAllUser" resultMap="result">
+        SELECT * FROM USER
+    </select>
+     
+    <select id="selectUserById" parameterType="int" resultMap="result">
+        SELECT * FROM USER WHERE USERID = #{id};
+    </select>
+     
+    <insert id="insertUser" parameterType="User">
+    		INSERT INTO USER (USERID, USERNAME, SEX, ACCOUNTNAME, PASSWORD, USERLEVEL ) VALUES (#{id}, #{name}, #{sex}, #{account}, #{password}, #{userLevel})
+    </insert>
+    
+    <update id="updateUser" parameterType="User">
+    	UPDATE USER SET USERNAME = #{name}, SEX = #{sex}, ACCOUNTNAME = #{account}, PASSWORD = #{password}, USERLEVEL = #{userLevel} WHERE USERID = #{id}
+    </update>
+    
+    <delete id="deleteUserById">
+    	DELETE from USER WHERE USERID = #{id};
+    </delete>
+     
+     <!-- Exercise -->
+     
+     <select id="selectUserByName" parameterType="java.lang.String" resultMap="result">
+    	SELECT * FROM USER WHERE 1=1
+		<if test="name!=null">
+			AND USERNAME LIKE CONCAT('%', #{name} , '%')
+		</if>
+   	</select>
+   	
+   	<select id="selectUserByNameorAccount" parameterType="User" resultMap="result">
+   		SELECT * FROM USER WHERE 1=1
+   		<choose>
+   			<when test="account!=null">
+   				AND ACCOUNTNAME LIKE CONCAT('%', #{account} , '%')
+   			</when>
+   			<when test="name!=null">
+   				AND USERNAME LIKE CONCAT('%', #{name} , '%')
+   			</when>
+   		</choose>
+   	</select>
+     
+     
+     <select id="selectUserByMultiID" resultMap="result">
+    	SELECT * FROM USER U
+    	WHERE U.USERID IN  
+    	<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+    		#{item}
+    	</foreach>
+    </select>
+    
+    <update id="updateUserbyID" parameterType="User">
+    	UPDATE USER
+	    <set>
+	    	<if test="name != null">USERNAME = #{name},</if>
+	    	<if test="sex !=null">SEX = #{sex},</if>
+	    	<if test="account !=null">ACCOUNTNAME = #{account},</if>
+	    	<if test="password != null">PASSWORD = #{password},</if>
+	    	<if test="userLevel !=null">USERLEVEL =#{userLevel}</if>
+	    </set>
+	    WHERE USERID = #{id}
+    </update>
+</mapper>
