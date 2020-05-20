@@ -11,6 +11,14 @@ import vn.com.cyberlogitec.practice_04.util.MyBatisUtil;
 @Repository
 public class StudentMapper {
 	
+	public List<Student> findAll() {
+		SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+		List<Student> studentList = session.selectList("findAll");
+		session.commit();
+		session.close();
+		return studentList;
+	}
+	
 	public List<Student> findStudentByName(String nameStudent) {
 		Student student = new Student();
 		student.setNAME(nameStudent);

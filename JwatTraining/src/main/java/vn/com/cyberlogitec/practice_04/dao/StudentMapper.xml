@@ -15,8 +15,12 @@
 		<result property="EMAIL" column="EMAIL" />
 	</resultMap>
 
+	<select id="findAll" resultType="student" resultMap="result" databaseId="sqlserver">
+		SELECT * FROM tbl_student
+	</select>
+	
 	<select id="findStudentByName" parameterType="student"
-		resultType="student" resultMap="result">
+		resultType="student" resultMap="result" databaseId="oracle">
 
 		SELECT * FROM tbl_student
 		<if test="NAME != null">
@@ -51,7 +55,7 @@
 	</select>
 
 	<select id="findStudentByMultiId" parameterType="list"
-		resultType="student">
+		resultType="student" databaseId="mysql">
 		SELECT *
 		FROM tbl_student WHERE
 		<choose>
@@ -66,7 +70,24 @@
 		</choose>
 
 	</select>
+	
+	<select id="findStudentByMultiId" parameterType="list"
+		resultType="student" databaseId="oracle">
+		SELECT *
+		FROM tbl_student WHERE
+		<choose>
+			<when test="list==null || list.isEmpty()">
+				1 = 0
+			</when>
+			<otherwise>
+				id IN
+				<foreach item="item" index="index" collection="list"
+					open="(" separator="," close=")">#{item}</foreach>
+			</otherwise>
+		</choose>
 
+	</select>
+	
 	<update id="updateStudent">
 		UPDATE tbl_student
 		<set>
@@ -80,7 +101,17 @@
 	</update>
 
 	<insert id="insertStudent" parameterType="student"
-		keyProperty="ID" useGeneratedKeys="true">
+		keyProperty="ID" useGeneratedKeys="true" databaseId="mysql">
+
+		INSERT INTO tbl_student (NAME,
+		BRANCH, PERCENTAGE, PHONE, EMAIL)
+		VALUES(#{NAME}, #{BRANCH},
+		#{PERCENTAGE}, #{PHONE}, #{EMAIL})
+
+	</insert>
+	
+	<insert id="insertStudent" parameterType="student"
+		keyProperty="ID" useGeneratedKeys="true" databaseId="sqlserver">
 
 		INSERT INTO tbl_student (NAME,
 		BRANCH, PERCENTAGE, PHONE, EMAIL)

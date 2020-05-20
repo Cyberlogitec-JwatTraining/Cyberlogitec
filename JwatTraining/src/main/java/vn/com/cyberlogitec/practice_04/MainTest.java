@@ -13,10 +13,17 @@ public class MainTest {
 	public static void main(String[] args) {
 		StudentMapper studentMapper = new StudentMapper();
 
+		// Find All
+
+		List<Student> student = studentMapper.findAll();
+		System.out.println(student.toString());
+
 		// Search Student by Name
+
 		/*
 		 * String nameStudent = ""; if (nameStudent.equals("")) { nameStudent = null; }
 		 * List<Student> student = studentMapper.findStudentByName(nameStudent);
+		 * System.out.println(student.toString());
 		 */
 
 		// Search Student by Name Or Phone
@@ -26,17 +33,16 @@ public class MainTest {
 		 * (phoneStudent.equals("")) { phoneStudent = null; } List<Student> student =
 		 * studentMapper.findStudentByNameOrPhone(nameStudent, phoneStudent);
 		 */
-		
-		//Search Student by Multi Id
-		
+
+		// Search Student by Multi Id
 		/*
 		 * List<Integer> listId = new ArrayList<Integer>(); List<Student> student =
 		 * studentMapper.findStudentByMultiId(listId);
 		 * System.out.println(student.toString());
 		 */
-		
-		//Update Student by ID
-		
+
+		// Update Student by ID
+
 		/*
 		 * int ida = 0; Student student = studentMapper.findStudentById(ida); if
 		 * (student != null) { student.setEMAIL("abc@adwwad");
@@ -44,12 +50,15 @@ public class MainTest {
 		 * studentMapper.updateStudent(student); System.out.println(result); }else {
 		 * System.out.println("Thất bại"); }
 		 */
-		
-		//Insert Student
-		
-		Student student = new Student("Huynh Minh Tri", "bcd", 100, "0359941234", "abc@abc");
-		String result = studentMapper.saveStudent(student);
-		System.out.println(result);
+
+		// Insert Student
+
+		/*
+		 * Student student = new Student("Huynh Minh Tri", "bcd", 100, "0359941234",
+		 * "abc@abc"); String result = studentMapper.saveStudent(student);
+		 * System.out.println(result);
+		 */
+
 	}
 
 }
