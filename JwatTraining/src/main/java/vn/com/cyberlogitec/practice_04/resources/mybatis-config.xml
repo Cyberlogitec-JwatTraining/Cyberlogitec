@@ -6,7 +6,7 @@
   <typeAliases>
      <typeAlias type="vn.com.cyberlogitec.practice_04.entity.Student" alias="student"/>
   </typeAliases>  
-  <environments default="sqlserver">
+  <environments default="mysql">
     <environment id="mysql">
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">

@@ -15,10 +15,11 @@
 		<result property="EMAIL" column="EMAIL" />
 	</resultMap>
 
-	<select id="findAll" resultType="student" resultMap="result" databaseId="sqlserver">
+	<select id="findAll" resultType="student" resultMap="result"
+		databaseId="sqlserver">
 		SELECT * FROM tbl_student
 	</select>
-	
+
 	<select id="findStudentByName" parameterType="student"
 		resultType="student" resultMap="result" databaseId="oracle">
 
@@ -28,7 +29,7 @@
 		</if>
 
 	</select>
-	
+
 	<select id="findStudentById" parameterType="int"
 		resultType="student" resultMap="result">
 
@@ -70,7 +71,7 @@
 		</choose>
 
 	</select>
-	
+
 	<select id="findStudentByMultiId" parameterType="list"
 		resultType="student" databaseId="oracle">
 		SELECT *
@@ -87,7 +88,7 @@
 		</choose>
 
 	</select>
-	
+
 	<update id="updateStudent">
 		UPDATE tbl_student
 		<set>
@@ -101,22 +102,19 @@
 	</update>
 
 	<insert id="insertStudent" parameterType="student"
-		keyProperty="ID" useGeneratedKeys="true" databaseId="mysql">
-
-		INSERT INTO tbl_student (NAME,
-		BRANCH, PERCENTAGE, PHONE, EMAIL)
-		VALUES(#{NAME}, #{BRANCH},
-		#{PERCENTAGE}, #{PHONE}, #{EMAIL})
-
-	</insert>
-	
-	<insert id="insertStudent" parameterType="student"
-		keyProperty="ID" useGeneratedKeys="true" databaseId="sqlserver">
-
-		INSERT INTO tbl_student (NAME,
-		BRANCH, PERCENTAGE, PHONE, EMAIL)
-		VALUES(#{NAME}, #{BRANCH},
-		#{PERCENTAGE}, #{PHONE}, #{EMAIL})
+		keyProperty="ID" useGeneratedKeys="true">
+		<if test="_databaseId == 'sqlserver'">
+			INSERT INTO tbl_student (NAME,
+			BRANCH, PERCENTAGE, PHONE, EMAIL)
+			VALUES(#{NAME}, #{BRANCH},
+			#{PERCENTAGE}, #{PHONE}, #{EMAIL})
+		</if>
+		<if test="_databaseId == 'mysql'">
+			INSERT INTO tbl_student (NAME,
+			BRANCH, PERCENTAGE, PHONE, EMAIL)
+			VALUES(#{NAME}, #{BRANCH},
+			#{PERCENTAGE}, #{PHONE}, #{EMAIL})
+		</if>
 
 	</insert>
 

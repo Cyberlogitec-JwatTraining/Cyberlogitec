@@ -14,10 +14,10 @@ public class MainTest {
 		StudentMapper studentMapper = new StudentMapper();
 
 		// Find All
-
-		List<Student> student = studentMapper.findAll();
-		System.out.println(student.toString());
-
+		/*
+		 * List<Student> student = studentMapper.findAll();
+		 * System.out.println(student.toString());
+		 */
 		// Search Student by Name
 
 		/*
@@ -53,11 +53,9 @@ public class MainTest {
 
 		// Insert Student
 
-		/*
-		 * Student student = new Student("Huynh Minh Tri", "bcd", 100, "0359941234",
-		 * "abc@abc"); String result = studentMapper.saveStudent(student);
-		 * System.out.println(result);
-		 */
+		Student student = new Student("Huynh Minh Tri", "bcd", 100, "0359941234", "abc@abc");
+		String result = studentMapper.saveStudent(student);
+		System.out.println(result);
 
 	}
 
