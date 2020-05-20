@@ -1,0 +1,69 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.CLV.mapper.StudentMapper">
+    <select id="findAllStudent" resultType="Student">
+    	<if test="_databaseId == 'sqlserver'">
+      		select * from TBL_STUDENT
+    	</if>
+    	<if test="_databaseId == 'mysql'">
+      		select * from TBL_STUDENT
+    	</if>
+	</select>
+	<select id="findStudentByName" parameterType="String" resultType="Student">
+  	<bind name="name" value="'%'+_parameter+'%'" />
+	  	select * 
+	  	from TBL_STUDENT
+	  	where <if test = "_parameter != null"> STU_NAME like  #{name}</if>
+  	</select>
+  
+  <select id="findStudentByNameorPHONE" resultType="Student">
+  	select * from TBL_STUDENT
+  	<choose>
+  		<when test="stu_name !=null">
+  			where stu_name Like concat('%',concat(#{stu_name},'%'))
+  		</when>
+  		
+  		<when test="phone !=null">
+  			where phone = #{phone}
+  		</when>
+  	</choose>
+  </select>
+  
+  <select id="findStudentByMutiID" parameterType = "java.util.List" resultType="Student">
+  	select * 
+  	from TBL_STUDENT
+  	where STU_ID in
+  	<foreach item="item" index = "index" collection="list"
+  		open ="(" separator ="," close=")">
+  		#{item}
+  	</foreach>
+  	
+  </select>
+	<insert id="insertStudentMutiDB">
+		<if test="_databaseId == 'sqlserver'">
+			insert into TBL_STUDENT(stu_NAME,BRANCH,PERCENTAGE,PHONE,EMAIL)
+				Values(#{stu_name},#{branch},#{percentage},#{phone},#{email})
+		</if>
+		<if test="_databaseId == 'mssql'">
+			insert into TBL_STUDENT(stu_NAME,BRANCH,PERCENTAGE,PHONE,EMAIL)
+				Values(#{stu_name},#{branch},#{percentage},#{phone},#{email})
+		</if>
+	</insert>
+	<update id="updateStudentInfo">
+		update TBL_STUDENT
+		<set>
+			stu_NAME = #{stu_name},
+			BRANCH = #{branch}
+		</set>
+		where stu_id = #{stu_id}
+	</update>
+    <resultMap id = "result" type = "Student">
+       <result property = "stu_id" column = "stu_id"/>
+       <result property = "stu_name" column = "stu_NAME"/>
+       <result property = "branch" column = "BRANCH"/>
+       <result property = "percentage" column = "PERCENTAGE"/>
+       <result property = "phone" column = "PHONE"/>
+       <result property = "email" column = "EMAIL"/>
+    </resultMap>
+</mapper>

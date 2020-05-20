@@ -1,0 +1,43 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <typeAliases>
+        <typeAlias alias="Student" type="com.CLV.entity.Student" />
+    </typeAliases>
+	
+	<environments default = "sqlserver">
+      <environment id = "dev_mySql">
+         <transactionManager type = "JDBC"/> 
+			
+         <dataSource type = "POOLED">
+            <property name = "driver" value = "com.mysql.cj.jdbc.Driver"/>
+            <property name = "url" value = "jdbc:mysql://localhost:3306/world"/>
+            <property name = "username" value = "root"/>
+            <property name = "password" value = "admin"/>
+         </dataSource>   
+         
+      </environment>
+      
+      <environment id = "sqlserver">
+         <transactionManager type = "JDBC"/> 
+			
+         <dataSource type = "POOLED">
+            <property name = "driver" value = "com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+            <property name = "url" value = "jdbc:sqlserver://localhost:1433;databaseName=huyDB"/>
+            <property name = "username" value = "sa"/>
+            <property name = "password" value = "123456"/>
+         </dataSource>   
+         
+      </environment>
+   </environments>
+
+	<databaseIdProvider type="DB_VENDOR">
+	  <property name="SQL Server" value="sqlserver"/>
+	  <property name="MySQL" value="mysql"/>
+	</databaseIdProvider>
+
+    <mappers>
+        <mapper resource="com/CLV/mapper/StudentMapper.xml" />
+    </mappers>
+</configuration>
