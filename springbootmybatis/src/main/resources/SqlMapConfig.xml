@@ -4,12 +4,13 @@
 <configuration>
 
     <typeAliases>
-        <typeAlias alias="EmployeeInfo" type="com.cyberlogitec.jwat.springbootmybatis.EmployeeInfo" />
+        <typeAlias alias="EmployeeInfo" type="com.cyberlogitec.jwat.springbootmybatis.Entities.EmployeeInfo" />
+        <typeAlias alias="StudentInfo" type="com.cyberlogitec.jwat.springbootmybatis.Entities.StudentInfo" />
     </typeAliases>
 
     <mappers>
-<!--        <mapper resource="main/resources/mybatis/EmployeeMapper.xml" />-->
         <mapper resource="mybatis/EmployeeMapper.xml" />
+        <mapper resource="SQL mybatis Exercise/StudentMapper.xml" />
     </mappers>
 
 </configuration>

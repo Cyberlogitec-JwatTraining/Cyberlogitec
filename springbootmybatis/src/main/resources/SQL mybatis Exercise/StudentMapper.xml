@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cyberlogitec.jwat.springbootmybatis.Mappers.StudentMapper">
+    <select id="getStudentByName" resultMap="result">
+        select *
+        from TBL_STUDENT
+        where 1=0
+        <if test="name!=null">
+            OR NAMEs = #{name}
+        </if>
+    </select>
+
+    <select id="getStudentByNameOrPhone" resultMap="result">
+        SELECT *
+        FROM TBL_STUDENT
+        WHERE 0=1
+        <choose>
+            <when test="name!=null">
+                OR NAMEs = #{name}
+            </when>
+            <when test="phone!=null">
+                OR PHONE = #{phone}
+            </when>
+        </choose>
+    </select>
+
+    <select id="getStudentByIds" resultMap="result">
+        SELECT *
+        FROM TBL_STUDENT
+        WHERE 1=0
+        <if test="array!=null">
+            OR IDs in
+            <foreach item="id" collection="array" open="((" separator="),(" close="))">
+                #{id}
+            </foreach>
+        </if>
+    </select>
+
+    <insert id="insertStudent">
+        INSERT INTO TBL_STUDENT
+        <if test="_databaseId == 'oracle'">
+            <foreach item="s" collection="array" separator=" UNION ALL ">
+                SELECT 0,#{s.name},#{s.branch},#{s.percentage},#{s.phone},#{s.email} FROM DUAL
+            </foreach>
+        </if>
+
+        <if test="_databaseId == 'mysql'">
+            (NAMEs, BRANCH ,PERCENTAGE ,PHONE, EMAIL) VALUES
+            <foreach item="s" collection="array" separator=" , ">
+                (#{s.name},#{s.branch},#{s.percentage},#{s.phone},#{s.email})
+            </foreach>
+        </if>
+    </insert>
+
+    <update id="updateStudent">
+        UPDATE TBL_STUDENT
+        <set>
+            NAMEs=#{newStudentInfo.name},
+            BRANCH=#{newStudentInfo.branch},
+            PERCENTAGE=#{newStudentInfo.percentage},
+            PHONE=#{newStudentInfo.phone},
+            EMAIL=#{newStudentInfo.email}
+        </set>
+        WHERE IDs=#{id}
+    </update>
+
+    <resultMap id="result" type="StudentInfo">
+        <result property="id" column="IDs"/>
+        <result property="name" column="NAMEs"/>
+        <result property="branch" column="BRANCH"/>
+        <result property="percentage" column="PERCENTAGE"/>
+        <result property="phone" column="PHONE"/>
+        <result property="email" column="EMAIL"/>
+    </resultMap>
+</mapper>

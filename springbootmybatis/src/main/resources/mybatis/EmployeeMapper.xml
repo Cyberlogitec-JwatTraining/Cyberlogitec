@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cyberlogitec.jwat.springbootmybatis.mapper.EmployeeMapper">
-    <select id="getEmployeeFromId" resultType="EmployeeInfo">
+
+<mapper namespace="com.cyberlogitec.jwat.springbootmybatis.Mappers.EmployeeMapper">
+    <select id="getEmployeeFromId" resultMap="result">
     select EMPLOYEE_ID, FIRST_NAME, LAST_NAME
     from employees
     where employee_id = #{id}
+    </select>
+
+    <select id="getEmployeeHasSalaryGreaterThan" resultMap="result">
+        SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME
+        FROM employees
+        WHERE salary > #{minSalary}
+    </select>
+
+    <select id="getEmployeeHasName" resultMap="result">
+        SELECT EMPLOYEE_ID, LAST_NAME, FIRST_NAME
+        FROM employees
+        WHERE 1=0
+        <if test="lastName != null and firstName != null">
+            OR (LAST_NAME = #{lastName} AND FIRST_NAME = #{firstName})
+        </if>
+    </select>
+
+    <select id="getEmployeeHasLastName" resultMap="result">
+        SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME
+        FROM employees
+        WHERE 1=0
+        <if test="lastName != null">
+            OR LAST_NAME = #{lastName}
+        </if>
     </select>
 
     <resultMap id="result" type="EmployeeInfo">

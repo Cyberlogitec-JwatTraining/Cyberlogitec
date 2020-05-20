@@ -1,4 +1,4 @@
-package com.cyberlogitec.jwat.springbootmybatis;
+package com.cyberlogitec.jwat.springbootmybatis.Entities;
 
 public class EmployeeInfo {
     int id;
