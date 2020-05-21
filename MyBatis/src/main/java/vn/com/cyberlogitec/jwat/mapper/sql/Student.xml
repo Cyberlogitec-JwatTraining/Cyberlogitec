@@ -31,10 +31,42 @@
         SELECT * FROM Student WHERE ID = #{id};
     </select>
     
+   	<!-- CÂU 1 -->
     <select id="selectStudentByName" parameterType="String" resultType="Student">
         SELECT * FROM Student WHERE 1=1
         <if test = "studentName != null">
 			AND NAME LIKE CONCAT('%',#{studentName},'%') 
 		</if>
     </select>
+    
+    <select id="selectStudentByNameOrPhone" parameterType="String" resultType="Student">
+        SELECT * FROM Student WHERE 1=1
+        <choose>
+	        <when test = "name != null">
+				AND NAME LIKE CONCAT('%',#{name},'%') 
+			</when>
+			<when test = "phone != null">
+				AND PHONE LIKE #{phone} 
+			</when>
+        </choose>
+    </select>
+    
+     <select id="selectStudentByMultiId" resultMap="result">
+    	SELECT * FROM Student where id in
+    	<foreach item="id" index="index" collection="array" open="(" separator="," close=")">
+    		#{id}
+    	</foreach>
+    </select>
+    
+    <update id="updateStudentById">
+	  UPDATE Student 
+	    <set>
+	      <if test="name != null">name=#{name},</if>
+	      <if test="branch != null">branch=#{branch},</if>
+	      <if test="percentage != null">percentage=#{percentage},</if>
+	      <if test="phone != null">phone=#{phone},</if>
+	      <if test="email != null">email=#{email} </if>
+	    </set>
+	  WHERE id=#{id}
+	</update>
 </mapper>

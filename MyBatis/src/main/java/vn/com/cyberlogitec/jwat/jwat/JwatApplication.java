@@ -16,44 +16,54 @@ public class JwatApplication {
 		SpringApplication.run(JwatApplication.class, args);
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 		StudentService studentService = (StudentService) context.getBean("studentService");
-		
-		/* create student */
-		//Student student1 = new Student(11,"Jim", "CS Nha Trang", 95, 1234568, "jimdev@gmail.com");
-		 
-		 
-		/* insert student */		
-		//studentService.insertStudent(student1); 
-		//System.out.println("insert : " + student1);
-		 		 
-		/* select all student */
- 		List<Student> listStudents = studentService.selectAllStudent();
-		System.out.println("select all : ");
-		for (Student student : listStudents) {
-		    System.out.println(student);
-		}
 		 
 		/* select student by id */
 		System.out.println("select student by id : ");
 		Student student2 = studentService.selectStudentById(4);
 		System.out.println(student2.toString());
 		     
-		/* select student by name */
+		/* Câu 1 */
+		List<Student> listStudents1 = studentService.selectStudentByName("Jim");
+		System.out.println("select student by name [Jim]: ");
+		for (Student student : listStudents1) {
+			System.out.println(student);
+		}
+		 
+		/* Câu 2 */
+		System.out.println("Select data of Student based on Name");
+		Student studentN = new Student();
+		studentN.setName("Pham Xuan Bach");
+		List<Student> listStudent2 = studentService.selectStudentByNameOrPhone(studentN);
+		for (Student student : listStudent2) {
+			System.out.println(student);
+		}
 		
-		  List<Student> listStudents1 = studentService.selectStudentByName("Jim");
-		  System.out.println("select student by name [Jim]: "); 
-		  for (Student student:listStudents1){ 
-			  System.out.println(student); 
-		  }
-		 
-		/* update student */
-		//student2.setPercentage(99); 
-		//studentService.updateStudent(student2);
-		//System.out.println("update : " + student2);
-		 
-		 
-		/* delete student by id */
-		//studentService.deleteStudentById(student2.getId());
-		//System.out.println("delete : " + student2);		
+		System.out.println("Select data of Student based on Phone");
+		Student studentP = new Student();
+		studentP.setPhone(91112);
+		List<Student> listStudent3 = studentService.selectStudentByNameOrPhone(studentP);
+		for (Student student : listStudent3) {
+			System.out.println(student);
+		}
+		
+		/* Câu 3 */
+		List<Student> listStudents4 = studentService.selectStudentByMultiId(new int[] { 2, 3, 4 });
+		System.out.println("Select students by multiple IDs : ");
+		for (Student student : listStudents4) {
+			System.out.println(student);
+		}
+		
+		/* Câu 4 */
+		System.out.println("Update student by id");
+		Student student1 = new Student(0,"Tran Minh Triet","Co So Bao Loc",95,12345,"minhtriet@jwat.com");
+		studentService.updateStudentById(student1);
+		
+		/* select all student */
+ 		List<Student> listStudents = studentService.selectAllStudent();
+		System.out.println("select all student : ");
+		for (Student student : listStudents) {
+		    System.out.println(student);
+		}
 	}
 
 }

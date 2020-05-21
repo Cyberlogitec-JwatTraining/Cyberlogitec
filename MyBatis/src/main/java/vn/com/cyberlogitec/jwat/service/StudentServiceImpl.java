@@ -33,8 +33,20 @@ public class StudentServiceImpl implements StudentService {
         return studentMapper.selectStudentById(studentId);
     }
 
-	@Override
 	public List<Student> selectStudentByName(String studentName) {
 		return studentMapper.selectStudentByName(studentName);
+	}
+	
+	public List<Student> selectStudentByNameOrPhone(Student student) {
+		return studentMapper.selectStudentByNameOrPhone(student);
+	}
+
+	public List<Student> selectStudentByMultiId(int[] idList) {
+		return studentMapper.selectStudentByMultiId(idList);
+	}
+
+	@Override
+	public int updateStudentById(Student student) {
+		return studentMapper.updateStudentById(student);
 	}
 }

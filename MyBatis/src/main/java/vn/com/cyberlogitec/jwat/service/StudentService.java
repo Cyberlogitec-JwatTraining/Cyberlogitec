@@ -11,4 +11,7 @@ public interface StudentService {
     public List<Student> selectAllStudent();
     public Student selectStudentById(int studentId);
     public List<Student> selectStudentByName(String studentName);
+    public List<Student> selectStudentByNameOrPhone(Student student);
+    public List<Student> selectStudentByMultiId(int[] idList);
+    public int updateStudentById(Student student);
 }
