@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<!-- material icon -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+
+<!-- my css -->
+<link rel="stylesheet" href="../css/index.css">
+
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+		<br>
+		<div id="student-table-vue">
+
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<input type="text" class="form-control" placeholder="Name"
+						v-model="studentSearchModel.name"> <input type="text"
+						class="form-control" placeholder="Branch"
+						v-model="studentSearchModel.branch"> <input type="text"
+						class="form-control" placeholder="Phone"
+						v-model="studentSearchModel.phone">
+				</div>
+				<input type="text" class="form-control" placeholder="Email"
+					v-model="studentSearchModel.email">
+				<div class="input-group-append">
+					<button class="btn btn-primary" type="button" v-on:click="search"
+						title="Search">
+						<span class="material-icons"> search </span>
+					</button>
+				</div>
+			</div>
+
+			<div class="float-left">
+				<!-- Button to Open the Modal -->
+				<button type="button" class="btn btn-info btn-add"
+					data-toggle="modal" v-on:click="openAddModel">Add Student</button>
+			</div>
+			
+			<div class="float-right">
+				<!-- Button to Open the Modal -->
+				<button type="button" class="btn btn-success btn-add"
+					data-toggle="modal" v-on:click="updateData">Fecth All</button>
+			</div>
+
+			<!-- 	table student	 -->
+			<student-table :data-student="studentList"></student-table>
+
+
+			<!-- The Add Modal -->
+			<div class="modal" id="addModal">
+				<div class="modal-dialog">
+					<div class="modal-content"
+						style="color: #17a2b8; font-weight: bold">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Add Student</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+							<!-- input name -->
+							<label for="name">Name: </label>
+							<div class="input-group mb-3">
+								<input type="text" class="form-control" placeholder="Name"
+									id="name" v-model="studentAddModel.name">
+							</div>
+
+							<!-- input branch -->
+							<label for="branch">Branch: </label>
+							<div class="input-group mb-3">
+								<input type="text" class="form-control" placeholder="Branch"
+									id="branch" v-model="studentAddModel.branch">
+							</div>
+
+							<!-- input percentage -->
+							<label for="percentage">Percentage: </label>
+							<div class="input-group mb-3">
+								<input type="text" class="form-control" placeholder="Percentage"
+									id="percentage" v-model="studentAddModel.percentage">
+							</div>
+
+							<!-- input phone -->
+							<label for="phone">Phone: </label>
+							<div class="input-group mb-3">
+								<input type="text" class="form-control" placeholder="Phone"
+									id="phone" v-model="studentAddModel.phone">
+							</div>
+
+
+							<!-- input email -->
+							<label for="name">Email: </label>
+							<div class="input-group mb-3">
+								<input type="text" class="form-control" placeholder="Email"
+									id="email" v-model="studentAddModel.email">
+							</div>
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+							<template v-if="isEdit">
+							<button type="button" class="btn btn-warning"
+								v-on:click="editStudent" id="btnEdit">Save</button>
+							</template>
+
+							<template v-else>
+							<button type="button" class="btn btn-info"
+								v-on:click="addStudent" id="btnAdd">Save</button>
+							</template>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<!-- The Confirm Modal -->
+			<div class="modal" id="confirmModal">
+				<div class="modal-dialog">
+					<div class="modal-content"
+						style="color: #17a2b8; font-weight: bold">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Confirm</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+							<label style="color: #dc3545">You want to delete -> {{studentDeleteName}}? </label>
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+							<button type="button" class="btn btn-info"
+								v-on:click="deleteStudent" id="btnConfirm">Yes</button>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+
+</body>
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<!-- axios lib -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+
+<!-- vue js -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<!-- my script -->
+<script type="text/javascript" src="../js/index.js"></script>
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,20 @@
+.btn-primary {
+	height: 38px;
+}
+.btn-add {
+	margin-bottom: 5px;
+}
+
+table.table td a.edit {
+    color: #FFC107;
+}
+table.table td a.delete {
+    color: #E34724;
+}
+
+table.table td a {
+	cursor: pointer;
+    display: inline-block;
+    margin: 0 5px;
+	min-width: 24px;
+}
