@@ -16,9 +16,9 @@ public interface StudentService {
     public List<Student> selectAllStudent();
     public Student selectStudentById(int studentId);
     
-	List<Student> getStudentByName(StudentMapper studentMapper, String name);
-	List<Student> getStudentByNameOrPhone(StudentMapper studentMapper, String name, int phone);
-	List<Student> getStudentByListId(StudentMapper studentMapper, List<Integer> list);
+	List<Student> selectStudentByName(StudentMapper studentMapper, String name);
+	List<Student> selectStudentByNameOrPhone(StudentMapper studentMapper, String name, int phone);
+	List<Student> selectStudentByListId(StudentMapper studentMapper, List<Integer> list);
 	
 	
 	
