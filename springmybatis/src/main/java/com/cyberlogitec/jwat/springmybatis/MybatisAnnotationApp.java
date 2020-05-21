@@ -25,12 +25,6 @@ public class MybatisAnnotationApp {
 	    	System.out.println(user);
 	    }
 	    
-	    User user1 = userMapper.selectUserById(5);
-	    System.out.println(user1);
-	    user1.setName("admin0101");
-	    user1.setAccount("admin0101@gmail.com");
-	    userMapper.updateUser(user1);
-	    System.out.println(user1);
 	    
 	    //session.commit();
 	    session.close();

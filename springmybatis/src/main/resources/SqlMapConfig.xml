@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
- 
+
 <configuration>
- 
-    <typeAliases>
+	<typeAliases>
         <typeAlias alias="User" type="com.cyberlogitec.jwat.springmybatis.model.User" />
     </typeAliases>
+    
+	<environments default="mysql">
+	    <environment id="mysql">
+	      <transactionManager type="JDBC"/>
+	      <dataSource type="POOLED">
+	        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+	        <property name="url" value="jdbc:mysql://localhost/webdatabase?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
+	        <property name="username" value="root"/>
+	        <property name="password" value=""/>
+	      </dataSource>
+	    </environment>
+	    
+	    <!-- <environment id="oracle">
+	      <transactionManager type="JDBC"/>
+	      <dataSource type="POOLED">
+	        <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+	        <property name="url" value="jdbc:oracle:thin:@localhost:3306:xe"/>
+	        <property name="username" value="system"/>
+	        <property name="password" value=""/>
+	      </dataSource>
+	    </environment> -->
+	    
+  	</environments> 
  
+ 	<databaseIdProvider type="DB_VENDOR">
+	  <!-- <property name="Oracle" value="oracle"/> -->
+	  <property name="MySQL" value="mysql"/>
+	</databaseIdProvider>
+ 	
  	<mappers>
  		<mapper resource="com/cyberlogitec/jwat/springmybatis/mapper/sql/UserMapper.xml"/>
  	</mappers>	
+ 	
  	
 </configuration>

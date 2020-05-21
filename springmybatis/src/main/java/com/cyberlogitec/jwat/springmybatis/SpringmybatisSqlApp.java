@@ -25,17 +25,17 @@ public class SpringmybatisSqlApp {
 //        }
         
         //Search by name or account
-//        User findUser = new User();
-//        findUser.setAccount("");
-//        findUser.setName("khoa");
-//        System.out.println(findUser);
-//        List<User> listUsers = userService.selectUserByNameorAccount(findUser);
-//        System.out.println("select by name or account : ");
-//        if(listUsers != null) {
-//			for (User user : listUsers) {
-//				System.out.println(user);		      
-//			}
-//        }
+        User findUser = new User();
+        findUser.setAccount("ad");
+        findUser.setName(null);
+        System.out.println(findUser);
+        List<User> listUsers = userService.selectUserByNameorAccount(findUser);
+        System.out.println("select by name or account : ");
+        if(listUsers != null) {
+			for (User user : listUsers) {
+				System.out.println(user);		      
+			}
+        }
         
         //Search by multi id
 //        List<Integer> listID = new ArrayList<Integer>();
@@ -50,11 +50,9 @@ public class SpringmybatisSqlApp {
 //        }
         
         //Update user by id use set
-        User user = userService.selectUserById(13);
-        user.setPassword("78546311");
-        user.setAccount("khoa479@gmail.com");
-        user.setName("khoaa");
-        userService.updateUserbyID(user);
+//        User user = userService.selectUserById(7);
+//        user.setAccount("aakk@gmail.com");
+//        userService.updateUserbyID(user);
         
         
         

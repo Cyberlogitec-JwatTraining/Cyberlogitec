@@ -20,7 +20,12 @@
     </select>
      
     <insert id="insertUser" parameterType="User">
+    	<if test="_databaseId == 'mysql'">
     		INSERT INTO USER (USERID, USERNAME, SEX, ACCOUNTNAME, PASSWORD, USERLEVEL ) VALUES (#{id}, #{name}, #{sex}, #{account}, #{password}, #{userLevel})
+    	</if>
+    	<!-- <if test="_databaseId == 'oracle'">
+    		INSERT INTO USER (USERID, USERNAME, SEX, ACCOUNTNAME, PASSWORD, USERLEVEL ) VALUES (#{id}, #{name}, #{sex}, #{account}, #{password}, #{userLevel})
+    	</if> -->
     </insert>
     
     <update id="updateUser" parameterType="User">
@@ -43,11 +48,14 @@
    	<select id="selectUserByNameorAccount" parameterType="User" resultMap="result">
    		SELECT * FROM USER WHERE 1=1
    		<choose>
-   			<when test="account!=null">
+   			<when test="name!=null and account == null">
+   				AND USERNAME LIKE CONCAT('%', #{name} , '%')
+   			</when>
+   			<when test="account!=null and name == null">
    				AND ACCOUNTNAME LIKE CONCAT('%', #{account} , '%')
    			</when>
-   			<when test="name!=null">
-   				AND USERNAME LIKE CONCAT('%', #{name} , '%')
+   			<when test="account!=null and name != null">
+   				AND ACCOUNTNAME LIKE CONCAT('%', #{account} , '%') AND USERNAME LIKE CONCAT('%', #{name} , '%')
    			</when>
    		</choose>
    	</select>

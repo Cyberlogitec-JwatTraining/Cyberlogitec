@@ -29,7 +29,8 @@ public class SpringmybatisApplication {
 		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         UserService userService = (UserService) context.getBean("userService", UserService.class);
         
-        userService.insertUser(new User(7,"hello",0,"hello78@gmail.com","164974",1));
+        //userService.deleteUserById(9);
+        userService.insertUser(new User(9,"jack",0,"goo@gmail.com","784674",1));
         List<User> listUsers = userService.selectAllUser();
         System.out.println("select all : ");
         for (User user : listUsers) {
@@ -37,10 +38,10 @@ public class SpringmybatisApplication {
             
         }
         
-        User user1 = userService.selectUserById(1);
-        user1.setName("WYZZ");
-        userService.updateUser(user1);
-        System.out.println(user1);
+//        User user1 = userService.selectUserById(1);
+//        user1.setName("WYZZ");
+//        userService.updateUser(user1);
+//        System.out.println(user1);
         
         
 	}
